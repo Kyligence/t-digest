@@ -36,7 +36,7 @@ final class AVLGroupTree extends AbstractCollection<Centroid> {
     private double[] centroids;
     private int[] counts;
     private List<Double>[] datas;
-    private int[] aggregatedCounts;
+    private long[] aggregatedCounts;
     private final IntAVLTree tree;
 
     AVLGroupTree(final boolean record) {
@@ -94,7 +94,7 @@ final class AVLGroupTree extends AbstractCollection<Centroid> {
         };
         centroids = new double[tree.capacity()];
         counts = new int[tree.capacity()];
-        aggregatedCounts = new int[tree.capacity()];
+        aggregatedCounts = new long[tree.capacity()];
         if (record) {
             @SuppressWarnings("unchecked")
             final List<Double>[] datas = new List[tree.capacity()];
@@ -269,7 +269,7 @@ final class AVLGroupTree extends AbstractCollection<Centroid> {
     /**
      * Return the total count of points that have been added to the tree.
      */
-    public int sum() {
+    public long sum() {
         return aggregatedCounts[tree.root()];
     }
 
